@@ -1,35 +1,28 @@
-const { MongoClient } = require('mongodb');
-const {url,dbname}=require('../../envconfig/config')
-const client = new MongoClient(url);
+const MongoUtil = require('../utility/mongo.util');
 
-exports.view =async function(){
-  try{
-    await client.connect();
-    const db = client.db(dbname);
-    const collection = db.collection('firstdb')
-    const data= await collection.find({},{_id:false}).toArray();
-    return (data);
+class ToDoList {
+  async init(){
+    await MongoUtil.init();
+    this.collection = MongoUtil.collection ;
   }
-  catch(e){
-    return new Error('Error view data !!');
+  async add (data){
+    try{
+      await this.collection.insertOne(data);
+      return "Inserted one document";
+    }
+    catch(e){
+      console.log(e)
+    }
   }
-  finally{
-    client.close();
+  async view (){
+    try{
+      const data= await this.collection.find({},{_id:false}).toArray();
+      return (data);
+    }
+    catch(err){
+      throw err;
+    }
   }
-}
+};
 
-exports.add = async function(data){
-  try{
-    await client.connect();
-    const db = client.db(dbname);
-    const collection = db.collection('firstdb');
-    await collection.insertOne(data);
-    return "Inserted one document";
-  }
-  catch(e){
-    return new Error('Error adding data!!');
-  }
-  finally{
-    client.close();
-  }
-}
+module.exports = new ToDoList();
