@@ -1,7 +1,7 @@
 const ToDoList = require('../modules/user/user.database');
 
 /* InsertInto DB module : passes the add function method to the routes.js */
-module.exports.InsertIntoDb = async function add(req,res){
+module.exports = async function (req,res){
     try{
         res.sendStatus(204);
         const data = await ToDoList.add(req.body);

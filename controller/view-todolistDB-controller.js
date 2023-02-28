@@ -1,7 +1,7 @@
 const ToDoList = require('../modules/user/user.database');
 
 /* View DB module : passes the view function method to the routes.js */
-module.exports.ViewDbData  = async function view(req,res){
+module.exports  = async function (req,res){
     try{
         const data = await ToDoList.view(); 
         console.log(data); /* displaying the database data */
