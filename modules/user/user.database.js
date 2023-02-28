@@ -17,7 +17,7 @@ class ToDoList {
     try{
       await MongoUtil.init();
       const collection = MongoUtil.collection ;
-      const data= await collection.find({},{_id:false}).toArray();
+      const data= await collection.find({}, {projection:{_id:0}}).toArray();
       return (data);
     }
     finally{
