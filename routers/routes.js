@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const home = require('../controller/home-controller.js');
-const ToDoListDatabase = require('../controller/todolistDB-controller');
-
+const InsertIntoDb = require('../controller/add-todolistDB-controller');
+const ViewDbData = require('../controller/view-todolistDB-controller')
 /* home page */
 router.get('/',home)
 /* adding tasks */
-router.post('/add',ToDoListDatabase.InsertIntoDb);
+router.post('/add',InsertIntoDb);
 /* View tasks */
-router.get('/view',ToDoListDatabase.ViewDbData);
+router.get('/view',ViewDbData);
 
 module.exports = router

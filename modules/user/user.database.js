@@ -1,26 +1,27 @@
 const MongoUtil = require('../utility/mongo.util');
 
+/* ToDoList class for add and view method : to add data into the database and view data from the database */
 class ToDoList {
-  async init(){
-    await MongoUtil.init();
-    this.collection = MongoUtil.collection ;
-  }
   async add (data){
     try{
-      await this.collection.insertOne(data);
+      await MongoUtil.init();
+      const collection = MongoUtil.collection ;
+      await collection.insertOne(data);
       return "Inserted one document";
     }
-    catch(e){
-      console.log(e)
+    finally{
+      MongoUtil.client.close();
     }
   }
   async view (){
     try{
-      const data= await this.collection.find({},{_id:false}).toArray();
+      await MongoUtil.init();
+      const collection = MongoUtil.collection ;
+      const data= await collection.find({},{_id:false}).toArray();
       return (data);
     }
-    catch(err){
-      throw err;
+    finally{
+      MongoUtil.client.close();
     }
   }
 };

@@ -1,6 +1,8 @@
 const {MongoClient} = require('mongodb');
 const {url,dbname}=require('../../envconfig/config')
 
+/* Mongo Utility class to connect to the mongo client and create collection parameter */
+
 class MongoUtil {
     constructor (){
         this.client = new MongoClient(url);
@@ -13,7 +15,7 @@ class MongoUtil {
             this.collection = this.db.collection('firstdb');
         }
         catch(err){
-            throw err;
+            throw new Error(err);
         }
     }
 };
