@@ -13,36 +13,3 @@ module.exports = async function (req,res){
 };
 
 
-
-
-/* I think the error is of response and request */
-
-// class ToDoListDatabase{
-//     async init(){
-//         await ToDoList.init();
-//     }
-//     async InsertIntoDb(req,res){
-//         try{
-//             res.send(204);
-//             const InsertedData = await ToDoList.add(req.body);
-//             console.log(InsertedData);   
-//         }
-//         catch(e){
-//             console.log(e);
-//         }        
-//     }
-//     async ViewDbData(req,res){
-//         try{
-//             const DbData = await ToDoList.view();
-//             console.log(DbData);
-//             // res.send(data);
-//             return DbData;
-//         }
-//         catch(e){
-//             console.log(e);
-//         }
-//     }
-// };
-// module.exports = new ToDoListDatabase();
-
-
