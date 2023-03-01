@@ -1,13 +1,20 @@
 const {MongoClient} = require('mongodb');
 const {url,dbname}=require('../../envconfig/config')
 
-/* Mongo Utility class to connect to the mongo client and create collection parameter */
-
+/**
+ * Mongo Utility class
+ */
 class MongoUtil {
+    /**
+     * MongoUtil constructor to create MongoClient 
+     */
     constructor (){
         this.client = new MongoClient(url);
     }
-    async init() {
+    /**
+     * Initialize db and collection parameter of To Do List database
+     */
+    async connect() {
         try{
             await this.client.connect();
             console.log(`Connected to the Database ${dbname}`);
@@ -19,5 +26,7 @@ class MongoUtil {
         }
     }
 };
+const Mongo = new MongoUtil();
+Mongo.connect();
 
-module.exports = new MongoUtil();
+module.exports = Mongo;

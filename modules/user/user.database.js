@@ -1,27 +1,36 @@
 const MongoUtil = require('../utility/mongo.util');
 
-/* ToDoList class for add and view method : to add data into the database and view data from the database */
+/**
+ * To Do List Class 
+ */
 class ToDoList {
-  async add (data){
+  /**
+   * Add function to insert task into database
+   * @param {string} task task to be inserted into To Do List database
+   *  
+   */
+  async add (task){
     try{
-      await MongoUtil.init();
       const collection = MongoUtil.collection ;
-      await collection.insertOne(data);
+      await collection.insertOne(task);
       return "Inserted one document";
     }
-    finally{
-      MongoUtil.client.close();
+    catch(err){
+      throw new Error(`Error occured at add module in user.database : ${err}`);
     }
   }
+  /**
+   * View Function to view task from the database
+   * @returns {*} task from the To Do List database
+   */
   async view (){
     try{
-      await MongoUtil.init();
       const collection = MongoUtil.collection ;
-      const data= await collection.find({}, {projection:{_id:0}}).toArray();
-      return (data);
+      const tasks= await collection.find({}, {projection:{_id:0}}).toArray();
+      return (tasks);
     }
-    finally{
-      MongoUtil.client.close();
+    catch(err){
+      throw new Error(`Error occured at add module in user.database : ${err}`);
     }
   }
 };

@@ -1,13 +1,16 @@
 const ToDoList = require('../modules/user/user.database');
-
-/* View DB module : passes the view function method to the routes.js */
+/**
+ * View tasks from To Do List database
+ * @param {*} req '/view' request 
+ * @param {*} res sends tasks to the user
+ */
 module.exports  = async function (req,res){
     try{
-        const data = await ToDoList.view(); 
-        console.log(data); /* displaying the database data */
-        res.send(data); /* sending the data that is inside the database */
+        const tasks =  await ToDoList.view();
+        console.log(tasks); 
+        res.send(tasks); 
     }
     catch(e){
-        console.log(e); /* this will handle the error thrown by mongo utility function  */
+        console.log(`Error Occured in View To do list controller module : ${e}`); 
     }
 };
