@@ -17,12 +17,12 @@ class MongoUtil {
     async connect() {
         try{
             await this.client.connect();
-            console.log(`Connected to the Database ${dbname}`);
+            console.log(`Connected to the Database ${dbname} \n`);
             this.db = this.client.db(dbname);
             this.collection = this.db.collection('firstdb');
         }
         catch(err){
-            throw new Error(err);
+            console.log(`Error Occured in MongoUtil module while connecting \n ${err} `);
         }
     }
 };

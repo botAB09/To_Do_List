@@ -16,12 +16,12 @@ class ToDoList {
       return "Inserted one document";
     }
     catch(err){
-      throw new Error(`Error occured at add module in user.database : ${err}`);
+      throw new Error(`Error occured at Add module in user.database \n ${err}`);
     }
   }
   /**
    * View Function to view task from the database
-   * @returns {*} task from the To Do List database
+   * @returns {string} task from the To Do List database
    */
   async view (){
     try{
@@ -30,7 +30,7 @@ class ToDoList {
       return (tasks);
     }
     catch(err){
-      throw new Error(`Error occured at add module in user.database : ${err}`);
+      throw new Error(`Error occured at View module in user.database \n ${err}`);
     }
   }
 };
